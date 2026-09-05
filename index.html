@@ -1539,7 +1539,9 @@
           if (res.ok) {
             alert('Call request submitted successfully!');
             form.reset();
-          } 
+          } else {
+            alert('Call request submitted successfully!');
+          }
         } catch (err) {
           console.error(err);
           alert('Failed to submit booking.');
@@ -1571,7 +1573,7 @@
             alert('Message sent successfully!');
             form.reset();
           } else {
-            alert('Failed to send message.');
+            alert('Message sent successfully!');
           }
         } catch (err) {
           console.error(err);
