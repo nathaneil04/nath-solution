@@ -1,0 +1,906 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0f172a">
+  <meta name="description" content="Meet Nathaniel Sumaoang, the person behind Paniqui's Special Peanut Butter.">
+  <title>Meet Nathaniel Sumaoang | Paniqui's Special</title>
+
+  <style>
+    :root {
+      --cream: #0f172a;
+      --paper: #1e293b;
+      --brown: #f8fafc;
+      --brown-light: #94a3b8;
+      --peanut: #38bdf8;
+      --line: rgba(255, 255, 255, .12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--brown);
+      background: var(--cream);
+      font-family: "DM Sans", Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button, a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      padding: 16px clamp(20px, 6vw, 88px);
+      background: rgba(15, 23, 42, .92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255, 255, 255, .08);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      min-width: 0;
+    }
+
+    .brand img {
+      width: 48px;
+      height: 48px;
+      object-fit: contain;
+      border-radius: 12px;
+    }
+
+    .brand-copy strong {
+      display: block;
+      font-family: Georgia, serif;
+      font-size: 15px;
+      letter-spacing: .6px;
+    }
+
+    .brand-copy small {
+      display: block;
+      margin-top: 4px;
+      color: var(--brown-light);
+      font-size: 9px;
+      letter-spacing: 1.8px;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 11px 16px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      transition: .25s ease;
+    }
+
+    .back-link:hover {
+      color: white;
+      background: var(--brown);
+      border-color: var(--brown);
+      transform: translateY(-2px);
+    }
+
+    .hero {
+      width: min(1180px, 100%);
+      margin: auto;
+      padding: 75px 28px 84px;
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      align-items: center;
+      gap: clamp(35px, 8vw, 100px);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin-bottom: 23px;
+      color: var(--peanut);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 2.4px;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 27px;
+      height: 2px;
+      background: var(--peanut);
+    }
+
+    h1, h2 {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-weight: 500;
+      letter-spacing: -1.8px;
+    }
+
+    h1 {
+      max-width: 650px;
+      font-size: clamp(48px, 6.6vw, 84px);
+      line-height: .99;
+    }
+
+    h1 em {
+      color: var(--peanut);
+      font-weight: 500;
+    }
+
+    .hero-description {
+      max-width: 480px;
+      margin: 26px 0 30px;
+      color: var(--brown-light);
+      font-size: 15px;
+      line-height: 1.9;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .button {
+      min-height: 49px;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 13px;
+      padding: 0 21px;
+      border: 1px solid var(--brown);
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+      transition: transform .25s ease, background .25s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-3px);
+    }
+
+    .button-dark {
+      color: white;
+      background: var(--brown);
+    }
+
+    .button-dark:hover {
+      background: #0284c7;
+    }
+
+    .button-outline {
+      background: transparent;
+      border-color: var(--line);
+    }
+
+    .button-outline:hover {
+      background: #334155;
+    }
+
+    /* Profile visual — replace initials with your portrait if desired */
+    .portrait-area {
+      position: relative;
+      min-height: 440px;
+      display: grid;
+      place-items: center;
+      isolation: isolate;
+    }
+
+    .portrait-backdrop {
+      position: absolute;
+      z-index: -2;
+      width: min(100%, 410px);
+      aspect-ratio: .87;
+      border-radius: 48% 48% 25px 25px;
+      background: #334155;
+      transform: rotate(3deg);
+    }
+
+    .portrait-card {
+      position: relative;
+      width: min(100%, 390px);
+      aspect-ratio: .87;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border: 8px solid var(--paper);
+      border-radius: 48% 48% 20px 20px;
+      background:
+        radial-gradient(circle at 50% 37%, #64748b 0 17%, transparent 17.5%),
+        radial-gradient(ellipse at 50% 91%, #1e293b 0 36%, transparent 36.5%),
+        linear-gradient(145deg, #334155, #0f172a);
+      box-shadow: 0 25px 65px rgba(0, 0, 0, .25);
+    }
+
+    .portrait-initials {
+      position: absolute;
+      top: 45%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: rgba(248, 250, 252, .88);
+      font-family: Georgia, serif;
+      font-size: clamp(56px, 7vw, 88px);
+      letter-spacing: -7px;
+      text-shadow: 0 2px 15px rgba(56, 189, 248, .18);
+    }
+
+    .portrait-caption {
+      position: absolute;
+      left: 50%;
+      bottom: 28px;
+      width: 78%;
+      padding: 17px 20px;
+      transform: translateX(-50%);
+      border: 1px solid rgba(255, 255, 255, .75);
+      border-radius: 15px;
+      background: rgba(255, 253, 248, .94);
+      text-align: center;
+      box-shadow: 0 12px 35px rgba(255, 255, 255, .08);
+      backdrop-filter: blur(10px);
+    }
+
+    .portrait-caption strong {
+      display: block;
+      font-family: Georgia, serif;
+      font-size: 18px;
+    }
+
+    .portrait-caption small {
+      display: block;
+      margin-top: 6px;
+      color: var(--brown-light);
+      font-size: 9px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .floating-note {
+      position: absolute;
+      top: 48px;
+      right: -12px;
+      max-width: 175px;
+      padding: 14px 17px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--paper);
+      box-shadow: 0 12px 32px rgba(255, 255, 255, .08);
+      font-family: Georgia, serif;
+      font-size: 15px;
+      line-height: 1.45;
+      transform: rotate(4deg);
+      animation: floatNote 4s ease-in-out infinite;
+    }
+
+    @keyframes floatNote {
+      0%, 100% { transform: translateY(0) rotate(4deg); }
+      50% { transform: translateY(-7px) rotate(2deg); }
+    }
+
+    .story-section {
+      padding: 76px 24px;
+      background: var(--paper);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .story-inner {
+      width: min(790px, 100%);
+      margin: auto;
+      text-align: center;
+    }
+
+    .story-inner h2 {
+      margin-bottom: 23px;
+      font-size: clamp(36px, 5vw, 55px);
+      line-height: 1.1;
+    }
+
+    .story-inner h2 em {
+      color: var(--peanut);
+    }
+
+    .story-inner p {
+      margin: 0 auto 17px;
+      color: var(--brown-light);
+      font-size: 14px;
+      line-height: 2;
+    }
+
+    .quote {
+      margin: 35px 0 0;
+      padding: 23px;
+      border-top: 1px solid var(--line);
+      color: var(--brown);
+      font-family: Georgia, serif;
+      font-size: clamp(20px, 3vw, 27px);
+      font-style: italic;
+      line-height: 1.5;
+    }
+
+    .brand-cta {
+      padding: 80px 24px;
+      text-align: center;
+    }
+
+    .brand-cta h2 {
+      font-size: clamp(37px, 5vw, 58px);
+      line-height: 1.1;
+    }
+
+    .brand-cta p {
+      max-width: 480px;
+      margin: 20px auto 27px;
+      color: var(--brown-light);
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      padding: 25px clamp(20px, 6vw, 88px);
+      border-top: 1px solid var(--line);
+      color: var(--brown-light);
+      font-size: 11px;
+    }
+
+    .footer strong {
+      color: var(--brown);
+    }
+
+    .reveal {
+      animation: revealIn .8s ease both;
+    }
+
+    @keyframes revealIn {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 760px) {
+      .topbar {
+        padding: 13px 18px;
+      }
+
+      .brand img {
+        width: 42px;
+        height: 42px;
+      }
+
+      .brand-copy strong {
+        font-size: 12px;
+      }
+
+      .back-link {
+        padding: 10px 12px;
+        font-size: 11px;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 35px;
+        padding: 53px 23px 65px;
+      }
+
+      h1 {
+        font-size: clamp(49px, 13vw, 74px);
+      }
+
+      .hero-description {
+        font-size: 14px;
+      }
+
+      .portrait-area {
+        min-height: auto;
+        padding: 5px 12px 15px;
+      }
+
+      .portrait-card {
+        width: min(100%, 340px);
+      }
+
+      .portrait-backdrop {
+        width: min(100%, 350px);
+      }
+
+      .floating-note {
+        top: 30px;
+        right: 0;
+        max-width: 150px;
+        font-size: 13px;
+      }
+
+      .story-section {
+        padding: 60px 24px;
+      }
+
+      .brand-cta {
+        padding: 62px 22px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+
+    
+/* PREMIUM PERSONAL INTRODUCTION */
+.hero-copy {
+  position: relative;
+  max-width: 680px;
+}
+
+/* Elegant eyebrow label */
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  margin-bottom: 28px;
+  color: #38bdf8;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 2.8px;
+  line-height: 1.6;
+  text-transform: uppercase;
+}
+
+.hero-eyebrow-dot {
+  position: relative;
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #38bdf8;
+}
+
+.hero-eyebrow-dot::after {
+  content: "";
+  position: absolute;
+  inset: -5px;
+  border: 1px solid rgba(183, 123, 66, 0.5);
+  border-radius: 50%;
+  animation: eyebrowPulse 2.2s ease-out infinite;
+}
+
+/* Editorial headline */
+.hero-title {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 0;
+  color: #f8fafc;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(54px, 7.5vw, 100px);
+  font-weight: 500;
+  letter-spacing: -4px;
+  line-height: 0.98;
+}
+
+.hero-title-intro {
+  margin-bottom: 10px;
+  font-family: "DM Sans", Arial, sans-serif;
+  font-size: clamp(17px, 2vw, 23px);
+  font-weight: 500;
+  letter-spacing: -0.5px;
+  line-height: 1.4;
+  color: #94a3b8;
+}
+
+.hero-title-name {
+  position: relative;
+  display: block;
+  animation: nameReveal 0.8s ease both;
+}
+
+.hero-title-surname {
+  display: block;
+  margin-top: 5px;
+  padding-bottom: 10px;
+  animation: nameReveal 0.9s 0.12s ease both;
+}
+
+.hero-title-surname em {
+  position: relative;
+  color: #38bdf8;
+  font-weight: 500;
+  font-style: italic;
+}
+
+.hero-title-surname em::after {
+  content: "";
+  position: absolute;
+  left: 3px;
+  right: 10%;
+  bottom: -4px;
+  height: 3px;
+  border-radius: 50%;
+  background: #0284c7;
+  transform: rotate(-1.5deg);
+  transform-origin: left;
+  animation: underlineReveal 0.8s 0.6s ease both;
+}
+
+/* Supporting line */
+.hero-subtitle {
+  max-width: 390px;
+  margin: 29px 0 0;
+  color: #94a3b8;
+  font-size: 14px;
+  line-height: 1.9;
+  letter-spacing: 0.1px;
+}
+
+.hero-subtitle strong {
+  color: #f8fafc;
+  font-weight: 800;
+}
+
+/* Animations */
+@keyframes eyebrowPulse {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1.7);
+    opacity: 0;
+  }
+}
+
+@keyframes nameReveal {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes underlineReveal {
+  from {
+    transform: scaleX(0) rotate(-1.5deg);
+  }
+  to {
+    transform: scaleX(1) rotate(-1.5deg);
+  }
+}
+
+/* Mobile refinement */
+@media (max-width: 600px) {
+  .hero-eyebrow {
+    margin-bottom: 23px;
+    font-size: 9px;
+    letter-spacing: 2px;
+  }
+
+  .hero-title {
+    font-size: clamp(52px, 13vw, 78px);
+    letter-spacing: -2.8px;
+  }
+
+  .hero-title-intro {
+    font-size: 19px;
+  }
+
+  .hero-subtitle {
+    max-width: 320px;
+    margin-top: 23px;
+    font-size: 13px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-eyebrow-dot::after,
+  .hero-title-name,
+  .hero-title-surname,
+  .hero-title-surname em::after {
+    animation: none;
+  }
+}
+
+.portrait-area {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+  perspective: 900px;
+}
+
+.nathaniel-portrait {
+  display: block;
+  width: 100%;
+  max-width: 420px;
+  height: auto;
+  object-fit: contain;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+
+  transform: translate3d(0, 0, 0) rotateX(0) rotateY(0);
+  transform-origin: center center;
+  transition: transform 180ms ease-out;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nathaniel-portrait {
+    transition: none;
+  }
+}
+
+.portrait-area {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: visible;
+}
+
+.portrait-stack {
+  position: relative;
+  width: min(100%, 420px);
+  aspect-ratio: 3 / 4; /* Adjust to match your PNG canvas */
+}
+
+.portrait-layer {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  pointer-events: none;
+}
+
+.portrait-head,
+.portrait-eyes {
+  will-change: transform;
+  transform-origin: 50% 58%; /* Adjust to the neck/joint position */
+  transition: transform 100ms ease-out;
+}
+
+.portrait-head {
+  transform:
+    translate3d(var(--head-x, 0px), var(--head-y, 0px), 0)
+    rotate(var(--head-rotate, 0deg));
+}
+
+.portrait-eyes {
+  transform:
+    translate3d(var(--head-x, 0px), var(--head-y, 0px), 0)
+    rotate(var(--head-rotate, 0deg))
+    translate3d(var(--eye-x, 0px), var(--eye-y, 0px), 0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .portrait-head,
+  .portrait-eyes {
+    transition: none;
+  }
+}
+
+.quote {
+  text-align: center;
+  margin: 35px 0 0;
+  padding: 23px;
+}
+  </style>
+</head>
+
+<body>
+
+  <main>
+    <section class="hero">
+      
+<div class="hero-copy reveal">
+  <span class="hero-eyebrow">
+    THE PERSON BEHIND DIGITAL SOLUTIONS
+  </span>
+
+  <h1 class="hero-title">
+    <span class="hero-title-intro">Hello, I'm</span>
+    <span class="hero-title-name">Nathaniel</span>
+    <span class="hero-title-surname"><em>Sumaoang.</em></span>
+  </h1>
+
+  <p class="hero-subtitle">
+    A PWD Freelancer Software & Web Developer behind Nath Solution.
+  </p>
+<p class="hero-description">
+          Welcome to my portfolio.
+          I build software projects, websites, applications and systems.
+        </p>
+
+          <a class="button button-outline" href="index.html">
+            Explore my work <span aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="portrait-area reveal">
+        <div class="portrait-backdrop"></div>
+
+        <!-- Replace this initials design with your own portrait anytime. -->
+<div class="portrait-area">
+  <img
+    class="nathaniel-portrait"
+    src="nath.png"
+    alt="Nathaniel Sumaoang"
+  >
+</div>
+
+       
+      </div>
+    </section>
+
+    <section class="story-section" id="my-story">
+      <div class="story-inner reveal">
+        <h2>
+          "Hindi Hadlang Ang Kapansanan Ang Magpatuloy Sa Buhay."<br>
+          <em>- Nathaniel Sumaoang</em>
+        </h2>
+
+        <p>
+I'm Nathaniel Sumaoang — a software developer, entrepreneur, and the person behind Paniqui’s Special Peanut Butter. I believe that every great idea begins with curiosity, creativity, and the courage to turn a vision into reality. Whether I'm developing digital solutions through code or building a business inspired by local flavor and tradition, I strive to create something meaningful, practical, and valuable to the people it serves.
+        </p>
+
+        <p>
+My journey brings together two worlds that continue to inspire me: technology and entrepreneurship. As a software developer, I'm passionate about exploring how technology can solve problems, simplify everyday tasks, and create better experiences for people. I enjoy the process of transforming concepts into functional digital solutions, from planning and designing interfaces to developing features that make applications more accessible, efficient, and user-friendly. For me, software development is more than writing lines of code; it's about understanding people's needs, approaching challenges with creativity, and continuously finding better ways to bring ideas to life.        </p>
+
+        <p>
+I believe that being a developer also means being a lifelong learner. Technology is constantly evolving, and every new tool, programming language, or development challenge provides an opportunity to improve. I'm committed to strengthening my technical knowledge, refining my problem-solving abilities, and expanding my understanding of how digital systems work. I value the balance between creativity and logic, attention to detail and big-picture thinking, and innovation and reliability. My goal is to continue growing as a developer while creating digital experiences that are useful, thoughtfully designed, and built around real needs.        </p>
+
+<p>
+  Beyond technology, I have a strong interest in business, creativity, and the process of building something from the ground up. I see entrepreneurship as an opportunity to turn ideas into products, services, and experiences that people can appreciate. It requires more than having a vision; it also demands dedication, adaptability, patience, and a willingness to learn from both successes and setbacks. I believe that meaningful businesses are built through consistency, genuine value, and the trust developed between a brand and the people who support it.
+</p>
+
+<p>
+One expression of this entrepreneurial journey is Paniqui’s Special, a peanut butter brand inspired by the character of our hometown and the simple pleasures that bring people together. The idea represents my appreciation for familiar flavors, shared moments, and the warmth of enjoying something delicious with family and friends. I want the brand to be more than a product on a shelf. I want it to represent care, creativity, and a connection to home — something people can remember, enjoy, and proudly share with others.
+</p>
+
+<p>
+  Building a brand also gives me the opportunity to apply the way I think as a software developer to the world of business. Both fields involve identifying problems, understanding an audience, developing solutions, paying attention to details, and improving through feedback. In technology, I work toward creating better digital experiences; in business, I aim to create a better experience for customers. Although the work may look different, the principles remain similar: start with a clear purpose, stay open to learning, and consistently work toward making the result better.
+</p>
+
+<p>
+  I am particularly interested in the possibilities that emerge when technology and entrepreneurship come together. Digital tools can help businesses organize their operations, reach more people, communicate effectively, and discover new opportunities for growth. I believe that creativity and technology can work hand in hand, helping small businesses build their identity and compete in an increasingly digital world. This perspective encourages me to explore new ideas, develop new skills, and look for opportunities where innovation can make a practical difference.
+</p>
+
+<p>
+  For me, growth is not measured only by the projects completed or the products created. It is also reflected in the lessons learned, the challenges overcome, the relationships built, and the willingness to keep moving forward. Every project presents a chance to improve my craft, while every business experience teaches me something new about responsibility, customer expectations, and the value of persistence. I understand that meaningful progress takes time, and I welcome the process of learning, adjusting, and becoming better with every step.
+</p>
+
+<p>
+  At the heart of everything I pursue is the desire to create something that matters. Whether developing software, exploring a new business idea, or working to grow Paniqui’s Special, I want my efforts to reflect creativity, dedication, and a genuine commitment to improvement. I hope to continue turning ideas into reality, discovering new possibilities, and building projects that bring value to people and open doors to future opportunities.
+</p>
+
+<p>
+  Thank you for taking the time to get to know me and for being part of this journey. Whether you're visiting to discover my work in software development, learn more about my entrepreneurial interests, or explore Paniqui’s Special, I'm grateful to have you here. Every visit, every word of encouragement, and every person who supports what I'm building contributes to the journey in its own way.
+</p>
+
+<p>
+  This is my story so far — a continuing journey of technology, entrepreneurship, creativity, and growth. I'm excited for the ideas still waiting to be developed, the opportunities still waiting to be explored, and the meaningful things that can be created along the way. The journey is ongoing, and I'm looking forward to what comes next.      </div>
+</p>
+        <div class="quote">
+           Every Story Has A Different Reasons. 
+           
+        </div>
+
+    <section class="brand-cta">
+      <h2>There's more to<br><em>share.</em></h2>
+
+      <p>
+        Discover Paniqui's Special, explore the jars, and find
+        your next favorite peanut butter moment.
+      </p>
+
+      <a class="button button-dark" href="index.html#shop">
+        Discover the jars <span aria-hidden="true">→</span>
+      </a>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span><strong>PANIQUI’S SPECIAL</strong> · Peanut Butter</span>
+    <span>Made with care in Paniqui, Tarlac, Philippines</span>
+    <a href="index.html">Return to homepage ↑</a>
+  </footer>
+  <script>
+(() => {
+  const portrait = document.querySelector(".nathaniel-portrait");
+
+  if (!portrait) return;
+
+  // Disable the effect for users who prefer reduced motion.
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    return;
+  }
+
+  let animationFrame;
+
+  function movePortrait(event) {
+    cancelAnimationFrame(animationFrame);
+
+    animationFrame = requestAnimationFrame(() => {
+      const rect = portrait.getBoundingClientRect();
+
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+
+      const x = Math.max(
+        -1,
+        Math.min(1, (event.clientX - centerX) / (window.innerWidth / 2))
+      );
+
+      const y = Math.max(
+        -1,
+        Math.min(1, (event.clientY - centerY) / (window.innerHeight / 2))
+      );
+
+      const moveX = x * 9;
+      const moveY = y * 7;
+      const rotateY = x * 5;
+      const rotateX = -y * 4;
+
+      portrait.style.transform =
+        `translate3d(${moveX}px, ${moveY}px, 0) ` +
+        `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    });
+  }
+
+  function resetPortrait() {
+    portrait.style.transform =
+      "translate3d(0, 0, 0) rotateX(0deg) rotateY(0deg)";
+  }
+
+  window.addEventListener("pointermove", movePortrait, {
+    passive: true
+  });
+
+  window.addEventListener("pointerleave", resetPortrait);
+  window.addEventListener("blur", resetPortrait);
+})();
+</script>
+</body>
+</html>
